@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup as bs
 from pprint import pprint
+import csv
 
 data = {
 'sr': '3',
@@ -52,4 +53,7 @@ list_of_result = data_list[1:25]
 all_dic = dict(zip( list_of_result[0::2],list_of_result[1::2]))
 print(all_dic)
 # print(data_list)
+with open('links.csv', 'a', newline='') as file:
+    writer = csv.DictWriter(file, fieldnames=all_dic.keys())
+    writer.writerow(all_dic)
 
